@@ -1,0 +1,35 @@
+def GetValue(min, max, v_type, text):
+    while True:
+        try:
+            value = v_type(input(text))
+    
+        except ValueError:
+            print("Digite um valor válido.")
+            continue
+
+        if not min == None and not max == None: 
+          if not min <= value <= max:
+                  print(f"Digite uma valor entre {min} e {max}")
+                  continue
+        elif max == None and not min == None: 
+          if value < min:
+                  print(f"Digite uma valor maior ou igual a {min}")
+                  continue
+        elif min == None and not max == None: 
+          if value > max:
+                  print(f"Digite uma valor menor ou igual a {max}")
+                  continue
+          
+        return value
+
+print("Bem vindos ao festival Wandercyra, João lucas e Ithalo! ")
+print("Condições da aprovação do festival: 20 participantes e orçamento: R$500\n")
+
+participantes = GetValue(0, None, int, "Insira a quantidade de participantes presentes: ")
+orcamento = GetValue(0, None, float, "Insira o orçamento atual: ")
+
+if participantes >= 20 and orcamento >= 500:
+  print("\nFestival aprovado, patrocínio de R$200 adquirido")
+  print(f"Orçamento final: {(orcamento + 200):.2f}")
+else:
+  print("\nFestival não aprovado")

@@ -1,0 +1,44 @@
+def GetValue(min, max, v_type, text):
+    while True:
+        try:
+            value = v_type(input(text))
+    
+        except ValueError:
+            print("Digite um valor válido.")
+            continue
+
+        if not min == None and not max == None: 
+          if not min <= value <= max:
+                  print(f"Digite uma valor entre {min} e {max}")
+                  continue
+        elif max == None and not min == None: 
+          if value < min:
+                  print(f"Digite uma valor maior ou igual a {min}")
+                  continue
+        elif min == None and not max == None: 
+          if value > max:
+                  print(f"Digite uma valor menor ou igual a {max}")
+                  continue
+          
+        return value
+
+print("Bem vindo a loja da Lizandra")
+print("Descontos especias para compra acima de R$100 e R$200\n")
+
+valor = GetValue(0, None, int, "Insira o valor da compra: ")
+desconto = 0
+
+if 100 < valor < 200  :
+  print("Compra acima de R$100 desconto de R$10 aplicado!")
+  desconto = 10
+elif 200 <= valor:
+  print("Compra acima de R$200 desconto de R$20 aplicado!")
+  desconto = 20
+else:
+  print("Nenhum desconto aplicado")
+
+final = valor - desconto
+
+print(f"\nValor da compra: R${valor:.2f}")
+print(f"Desconto: R${desconto:.2f}")
+print(f"Valor final: R${final:.2f}")

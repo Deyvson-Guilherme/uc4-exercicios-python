@@ -1,0 +1,37 @@
+def GetValue(min, max, v_type, text):
+    while True:
+        try:
+            value = v_type(input(text))
+    
+        except ValueError:
+            print("Digite um valor válido.")
+            continue
+
+        if not min == None and not max == None: 
+          if not min <= value <= max:
+                  print(f"Digite uma valor entre {min} e {max}")
+                  continue
+        elif max == None and not min == None: 
+          if value < min:
+                  print(f"Digite uma valor maior ou igual a {min}")
+                  continue
+        elif min == None and not max == None: 
+          if value > max:
+                  print(f"Digite uma valor menor ou igual a {max}")
+                  continue
+          
+        return value
+
+print("Seja bem vinda Prof. Ruth! Quantas esfihas vai querer? ")
+print("Valor da esfiha R$5.00, acima de 30 esfihas o valor cai para R$4.00\n")
+
+quantidade = GetValue(0, None, float, "Insira a quantidade de esfihas desejadas: ")
+esfihas = 5
+
+if quantidade >= 30:
+  print("Desconto aplicado, cada esfiha valera R$4.00")
+  esfihas = 4
+else:
+  print("Compre mais esfihas para obter desconto")
+
+print(f"\nValor final: R${(quantidade * esfihas):.2f}")
